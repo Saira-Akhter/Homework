@@ -1,0 +1,40 @@
+pin_code = 1234
+count = 0
+
+pin_ok = 0
+
+while count < 3 and pin_ok == 0:
+    user_input = input("Enter pin:")
+
+    try:
+        user_pin = int(user_input)
+        if len(user_input) > 4:
+            print("Pin must be 4 numbers")
+        elif len(user_input) < 4:
+            print("Pin must be 4 numbers")
+        elif user_pin == pin_code:
+            print("Success")
+            pin_ok = 1
+        else:
+            count += 1
+            if count < 3:
+                print("Pin wrong. Please try again.")
+            else:
+                print("Too many attempts.")
+    except ValueError:
+        print("Pin must be 4 numbers")
+
+if pin_ok == 1:
+    account = 100
+    user_withdrawal = input("Current balance = £" + str(account) + ". How much would you like to withdraw?")
+    try:
+        withdrawal_amount = int(user_withdrawal)
+        if withdrawal_amount <= account:
+            print("Withdrawing")
+            account -= withdrawal_amount
+        else:
+            print("Not enough money in account.")
+            raise Exception("Poor.")
+        print("you have £{} left".format(account))
+    except ValueError:
+        print("Type numbers only.")
